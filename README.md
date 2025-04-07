@@ -1,62 +1,71 @@
 # 💳 Desafio Autorizador
 
-Projeto de CLI em Python para simular um sistema de autorização de transações, com estrutura modular, testes unitários e empacotamento como pacote instalável via `uv`.
+Python CLI project to simulate a transaction authorization system, with a modular structure, unit tests, and packaging as an installable package via `uv`.
 
 ---
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```bash
 desafio_autorizador/
 │
-├── desafio_autorizador/        # Módulo principal
-│   ├── main.py                  # Execução do Autorizador
+├── desafio_autorizador/        # Main module
+│   ├── main.py                 # Authorizer execution
+├── models/                     # Module with data structure definitions
+│   ├── account.py              # Account data structure
+│   ├── transaction.py          # Transaction data structure
 │
-├── tests/                      # Testes unitários
+├── tests/                      # Unit tests
 │   ├── test_account.py
 │   └── test_transaction.py
 │
-├── Makefile                    # Automação de comandos
-├── pyproject.toml              # Configuração PEP 621 (usando setuptools)
+├── Makefile                    # Command automation
+├── pyproject.toml              # PEP 621 configuration (using setuptools)
 └── README.md
 ```
 
 ---
 
-## ✨ Instalação
+## ✨ Installation
 
-### Requisitos
+### Requirements
 
 - Python >= 3.9
-- [uv](https://github.com/astral-sh/uv) instalado globalmente
+- [uv](https://github.com/astral-sh/uv) installed globally
 
-### Instalação via Makefile
+### Installation via Makefile
 
 ```bash
 make install
 ```
 
-Este comando irá:
+This command will:
 
-- Criar um ambiente virtual `.venv`
-- Instalar dependências e o pacote em modo editável (`pip install -e .`)
-
----
-
-## 🧰 Comandos disponíveis
-
-| Comando           | Descrição                                              |
-|-------------------|--------------------------------------------------------|
-| `make install`    | Cria o venv e instala o projeto no ambiente            |
-| `make test`       | Roda os testes unitários com `unittest`               |
-| `make run`        | Executa o a versao do autorizador gerada pelo `make install`  |
-| `make clean`      | Remove diretórios e arquivos temporários              |
+- Create a virtual environment `.venv`
+- Install dependencies and the package in editable mode (`pip install -e .`)
 
 ---
 
-## 🔧 Uso da Autorizador
+## 🧰 Available Commands
 
-Após a instalação, execute:
+| Command           | Description                                              |
+|-------------------|----------------------------------------------------------|
+| `make version`    | Show project version, directory and name                |
+| `make help`       | Show this help                                           |
+| `make precommit`  | Installs and runs pre-commit hooks                       |
+| `make install`    | Installs project dependencies                            |
+| `make test`       | Runs the tests                                           |
+| `make build`      | Builds the project                                       |
+| `make run`        | Runs the project from the built package                 |
+| `make lint`       | Lints the code                                           |
+| `make format`     | Formats the code                                         |
+| `make clean`      | Cleans up unnecessary files                              |
+
+---
+
+## 🔧 Using the Authorizer
+
+After installation, run:
 
 ```bash
 desafio-autorizador
@@ -64,13 +73,13 @@ desafio-autorizador
 
 ---
 
-## 🥪 Executando os Testes
+## 🥪 Running Tests
 
 ```bash
 make test
 ```
 
-Ou manualmente com:
+Or manually with:
 
 ```bash
 python3 -m unittest discover -s tests -v
@@ -80,21 +89,19 @@ python3 -m unittest discover -s tests -v
 
 ## ✅ Status
 
-- [] Estrutura modular com models
-- [] CLI funcional com `argparse`
-- [x] Testes unitários com `unittest`
-- [] Build e distribuição com `setuptools`
-- [x] Gerenciamento com `Makefile` e `uv`
+- [x] Modular structure with models
+- [ ] Functional CLI with `argparse`
+- [x] Unit tests with `unittest`
+- [x] Build and distribution with `setuptools`
+- [x] Project management with `Makefile` and `uv`
 
 ---
-
-## 👤 Autor
 
 Dennis Reis
 📧 [dmpreis@gmail.com](mailto:dmpreis@gmail.com)
 
 ---
 
-## 📄 Licença
+## 📄 License
 
 MIT

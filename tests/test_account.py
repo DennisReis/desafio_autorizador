@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime
 
-from desafio_autorizador.main import Account, Transaction
+from desafio_autorizador.models import Account, Transaction
 
 
 class TestAccount(unittest.TestCase):
