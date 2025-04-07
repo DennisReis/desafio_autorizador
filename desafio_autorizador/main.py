@@ -61,6 +61,20 @@ def main():
     # Displaying the current state of the account
     print(account)
 
+    account.activate()  # Deactivating the account
+
+    # Creating a transaction of 100 for merchant 'Loja D' at the current date and time in a deactivated account
+    transaction = Transaction(merchant="Loja D", amount=100, time=datetime.now())
+
+    # Processing the transaction
+    if account.process_transaction(transaction):
+        print("Transação aprovada.")
+    else:
+        print("Transação recusada.")
+
+    # Displaying the current state of the account
+    print(account)
+
 
 if __name__ == "__main__":
     main()

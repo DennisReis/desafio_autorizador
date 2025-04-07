@@ -41,6 +41,10 @@ class Account:
             return True
         return False
 
+    def activate(self) -> None:
+        """Activates the account, enabling new transactions."""
+        self.active = True
+
     def deactivate(self) -> None:
         """Deactivates the account, preventing new transactions."""
         self.active = False

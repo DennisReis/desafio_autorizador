@@ -51,6 +51,14 @@ class TestAccount(unittest.TestCase):
         self.account.deactivate()
         self.assertFalse(self.account.active)
 
+    def test_activate_account(self):
+        """
+        Test that the account can be activated.
+        """
+        self.account.deactivate()
+        self.account.activate()
+        self.assertTrue(self.account.active)
+
     def test_str_representation(self):
         """
         Test the string representation of the account.
