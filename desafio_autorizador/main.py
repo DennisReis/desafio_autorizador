@@ -6,59 +6,59 @@ from desafio_autorizador.models.transaction import Transaction
 
 def main():
     """
-    Função principal que demonstra a criação de uma conta e o processamento de uma transação.
+    Main function that demonstrates the creation of an account and the processing of transactions.
     """
-    # Criando uma conta com limite de 1000
+    # Creating an account with a limit of 1000
     account = Account(active=True, available_limit=1000)
 
-    # Criando uma transação de 100 para o comerciante 'Loja A' na data e hora atuais
+    # Creating a transaction of 100 for merchant 'Loja A' at the current date and time
     transaction = Transaction(merchant="Loja A", amount=100, time=datetime.now())
 
-    # Processando a transação
+    # Processing the transaction
     if account.process_transaction(transaction):
         print("Transação aprovada.")
     else:
         print("Transação recusada.")
 
-    # Exibindo o estado atual da conta
+    # Displaying the current state of the account
     print(account)
 
-    # Criando uma transação de 200 para o comerciante 'Loja B' na data e hora atuais
+    # Creating a transaction of 200 for merchant 'Loja B' at the current date and time
     transaction = Transaction(merchant="Loja B", amount=200, time=datetime.now())
 
-    # Processando a transação
+    # Processing the transaction
     if account.process_transaction(transaction):
         print("Transação aprovada.")
     else:
         print("Transação recusada.")
 
-    # Exibindo o estado atual da conta
+    # Displaying the current state of the account
     print(account)
 
-    # Criando uma transação de 800 para o comerciante 'Loja C' na data e hora atuais
+    # Creating a transaction of 800 for merchant 'Loja C' at the current date and time
     transaction = Transaction(merchant="Loja C", amount=800, time=datetime.now())
 
-    # Processando a transação
+    # Processing the transaction
     if account.process_transaction(transaction):
         print("Transação aprovada.")
     else:
         print("Transação recusada.")
 
-    # Exibindo o estado atual da conta
+    # Displaying the current state of the account
     print(account)
 
-    account.deactivate()  # Inativando a conta
+    account.deactivate()  # Deactivating the account
 
-    # Criando uma transação de 100 para o comerciante 'Loja D' na data e hora atuais em uma conta inativa
+    # Creating a transaction of 100 for merchant 'Loja D' at the current date and time in a deactivated account
     transaction = Transaction(merchant="Loja D", amount=100, time=datetime.now())
 
-    # Processando a transação
+    # Processing the transaction
     if account.process_transaction(transaction):
         print("Transação aprovada.")
     else:
         print("Transação recusada.")
 
-    # Exibindo o estado atual da conta
+    # Displaying the current state of the account
     print(account)
 
 

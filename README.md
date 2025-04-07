@@ -1,6 +1,6 @@
-# 💳 Desafio Autorizador
+# 💳 Transaction Authorizer Challenge
 
-Python CLI project to simulate a transaction authorization system, with a modular structure, unit tests, and packaging as an installable package via `uv`.
+Python CLI project simulating a transaction authorization system, featuring modular structure, unit tests, and distribution packaging via `uv`.
 
 ---
 
@@ -10,8 +10,8 @@ Python CLI project to simulate a transaction authorization system, with a modula
 desafio_autorizador/
 │
 ├── desafio_autorizador/        # Main module
-│   ├── main.py                 # Authorizer execution
-├── models/                     # Module with data structure definitions
+│   ├── main.py                  # Authorizer execution
+├── models/                     # Data structure definitions
 │   ├── account.py              # Account data structure
 │   ├── transaction.py          # Transaction data structure
 │
@@ -20,7 +20,7 @@ desafio_autorizador/
 │   └── test_transaction.py
 │
 ├── Makefile                    # Command automation
-├── pyproject.toml              # PEP 621 configuration (using setuptools)
+├── pyproject.toml              # PEP 621 configuration (setuptools)
 └── README.md
 ```
 
@@ -41,7 +41,7 @@ make install
 
 This command will:
 
-- Create a virtual environment `.venv`
+- Create a `.venv` virtual environment
 - Install dependencies and the package in editable mode (`pip install -e .`)
 
 ---
@@ -52,14 +52,14 @@ This command will:
 |-------------------|----------------------------------------------------------|
 | `make version`    | Show project version, directory and name                |
 | `make help`       | Show this help                                           |
-| `make precommit`  | Installs and runs pre-commit hooks                       |
-| `make install`    | Installs project dependencies                            |
+| `make precommit`  | Installs and runs pre-commit hooks                      |
+| `make install`    | Installs project dependencies                           |
 | `make test`       | Runs the tests                                           |
-| `make build`      | Builds the project                                       |
-| `make run`        | Runs the project from the built package                 |
+| `make build`      | Builds the project into distributable formats           |
+| `make run`        | Runs the project from the built package (requires build) |
 | `make lint`       | Lints the code                                           |
 | `make format`     | Formats the code                                         |
-| `make clean`      | Cleans up unnecessary files                              |
+| `make clean`      | Cleans up unnecessary files                             |
 
 ---
 
@@ -87,15 +87,49 @@ python3 -m unittest discover -s tests -v
 
 ---
 
+## 🧱 Building the Project
+
+To build the project into `.whl` and `.tar.gz` formats:
+
+```bash
+make build
+```
+
+The artifacts will be created inside the `dist/` folder.
+
+To install one of the generated packages:
+
+```bash
+uv pip install dist/<your_package_name>.whl
+```
+
+Or:
+
+```bash
+uv pip install dist/<your_package_name>.tar.gz
+```
+
+To run the project from the built package, use:
+
+```bash
+make run
+```
+
+Note: `make run` automatically triggers `make build` if needed.
+
+---
+
 ## ✅ Status
 
 - [x] Modular structure with models
 - [ ] Functional CLI with `argparse`
 - [x] Unit tests with `unittest`
 - [x] Build and distribution with `setuptools`
-- [x] Project management with `Makefile` and `uv`
+- [x] Management via `Makefile` and `uv`
 
 ---
+
+## 👤 Author
 
 Dennis Reis
 📧 [dmpreis@gmail.com](mailto:dmpreis@gmail.com)

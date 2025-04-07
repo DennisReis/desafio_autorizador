@@ -5,21 +5,21 @@ from .transaction import Transaction
 
 class Account:
     """
-    Representa uma conta bancária.
+    Represents a bank account.
 
     Attributes:
-        active (bool): Indica se a conta está ativa.
-        available_limit (int): Limite de crédito disponível na conta.
-        history (List[Transaction]): Histórico de transações realizadas na conta.
+        active (bool): Indicates whether the account is active.
+        available_limit (int): Credit limit available on the account.
+        history (List[Transaction]): History of transactions performed on the account.
     """
 
     def __init__(self, active: bool, available_limit: int):
         """
-        Inicializa uma instância de Account.
+        Initialize an Account instance.
 
         Args:
-            active (bool): Estado inicial da conta (ativa ou inativa).
-            available_limit (int): Limite de crédito inicial disponível.
+            active (bool): Account initial state(ativa ou inativa).
+            available_limit (int): Initial available account limit .
         """
         self.active = active
         self.available_limit = available_limit
@@ -27,13 +27,13 @@ class Account:
 
     def process_transaction(self, transaction: Transaction) -> bool:
         """
-        Processa uma transação, debitando o valor do limite disponível e adicionando ao histórico.
+        Processes a transaction by debiting the amount from the available limit and adding it to the history.
 
         Args:
-            transaction (Transaction): A transação a ser processada.
+            transaction (Transaction): The transaction to be processed.
 
         Returns:
-            bool: True se a transação for aprovada, False caso contrário.
+            bool: True if the transaction is approved, False otherwise.
         """
         if self.active and transaction.amount <= self.available_limit:
             self.available_limit -= transaction.amount
@@ -42,14 +42,13 @@ class Account:
         return False
 
     def deactivate(self) -> None:
-        """Inativa a conta, impedindo novas transações."""
+        """Deactivates the account, preventing new transactions."""
         self.active = False
 
     def __repr__(self):
-        """
-        Retorna uma representação em string da conta.
+        """Returns a string representation of the account.
 
         Returns:
-            str: Representação textual da conta.
+            str: Textual representation of the account.
         """
         return f"Account(active={self.active}, available_limit={self.available_limit}, history={self.history})"

@@ -3,22 +3,22 @@ from datetime import datetime
 
 class Transaction:
     """
-    Representa uma transação financeira.
+    Represents a financial transaction.
 
     Attributes:
-        merchant (str): Nome do comerciante onde a transação foi realizada.
-        amount (int): Valor da transação em unidades monetárias.
-        time (datetime): Data e hora em que a transação ocorreu.
+        merchant (str): Merchant's name where the transaction ocurred.
+        amount (int): Transaction amount in monetary units.
+        time (datetime): Date and time when the transaction occurred.
     """
 
     def __init__(self, merchant: str, amount: int, time: datetime):
         """
-        Inicializa uma instância de Transaction.
+        Initializes a Transaction instance.
 
         Args:
-            merchant (str): Nome do comerciante.
-            amount (int): Valor da transação.
-            time (datetime): Data e hora da transação.
+            merchant (str): Merchant name.
+            amount (int): Transaction amount.
+            time (datetime): Date and time of the transaction.
         """
         self.merchant = merchant
         self.amount = amount
@@ -26,9 +26,9 @@ class Transaction:
 
     def __repr__(self):
         """
-        Retorna uma representação em string da transação.
+        Returns a string representation of the transaction.
 
         Returns:
-            str: Representação textual da transação.
+            str: Textual representation of the transaction.
         """
         return f"Transaction(merchant='{self.merchant}', amount={self.amount}, time={self.time})"

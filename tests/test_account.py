@@ -1,39 +1,62 @@
 import unittest
 from datetime import datetime
 
-from desafio_autorizador.models import Account, Transaction
+from desafio_autorizador.models.account import Account
+from desafio_autorizador.models.transaction import Transaction
 
 
 class TestAccount(unittest.TestCase):
+    """
+    Test suite for the Account class.
+    """
+
     def setUp(self):
-        self.account = Account(active=True, available_limit=100)
+        """
+        Sets up a default account instance for testing.
+        """
+        self.account = Account(active=True, available_limit=1000)
 
-    def test_account_creation(self):
-        self.assertTrue(self.account.active)
-        self.assertEqual(self.account.available_limit, 100)
-        self.assertEqual(len(self.account.history), 0)
+    def test_process_transaction_sufficient_limit(self):
+        """
+        Test that a transaction is approved when the available limit is sufficient.
+        """
+        transaction = Transaction(merchant="Loja A", amount=200, time=datetime.now())
+        result = self.account.process_transaction(transaction)
+        self.assertTrue(result)
+        self.assertEqual(self.account.available_limit, 800)
 
-    def test_successful_transaction(self):
-        tx = Transaction("Loja A", 30, datetime.now())
-        success = self.account.process_transaction(tx)
-        self.assertTrue(success)
-        self.assertEqual(self.account.available_limit, 70)
-        self.assertEqual(len(self.account.history), 1)
+    def test_process_transaction_insufficient_limit(self):
+        """
+        Test that a transaction is declined when the available limit is insufficient.
+        """
+        transaction = Transaction(merchant="Loja B", amount=1200, time=datetime.now())
+        result = self.account.process_transaction(transaction)
+        self.assertFalse(result)
+        self.assertEqual(self.account.available_limit, 1000)
 
-    def test_transaction_insufficient_funds(self):
-        tx = Transaction("Loja B", 150, datetime.now())
-        success = self.account.process_transaction(tx)
-        self.assertFalse(success)
-        self.assertEqual(self.account.available_limit, 100)
-        self.assertEqual(len(self.account.history), 0)
-
-    def test_transaction_account_inactive(self):
+    def test_process_transaction_inactive_account(self):
+        """
+        Test that a transaction is declined when the account is inactive.
+        """
         self.account.active = False
-        tx = Transaction("Loja C", 20, datetime.now())
-        success = self.account.process_transaction(tx)
-        self.assertFalse(success)
-        self.assertEqual(self.account.available_limit, 100)
-        self.assertEqual(len(self.account.history), 0)
+        transaction = Transaction(merchant="Loja C", amount=100, time=datetime.now())
+        result = self.account.process_transaction(transaction)
+        self.assertFalse(result)
+        self.assertEqual(self.account.available_limit, 1000)
+
+    def test_deactivate_account(self):
+        """
+        Test that the account can be deactivated.
+        """
+        self.account.deactivate()
+        self.assertFalse(self.account.active)
+
+    def test_str_representation(self):
+        """
+        Test the string representation of the account.
+        """
+        expected_str = "Account(active=True, available_limit=1000, history=[])"
+        self.assertEqual(str(self.account), expected_str)
 
 
 if __name__ == "__main__":

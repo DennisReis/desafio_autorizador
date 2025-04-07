@@ -22,9 +22,9 @@ precommit:  ## Installs and runs pre-commit hooks
 	@pre-commit install
 	@pre-commit run --all-files
 
-install:  ## Installs project dependencies
+install:  ## Installs project dependencies with dev requirements
 	@echo "[INFO] Installing dependencies..."
-	uv venv .venv && uv pip install -e .
+	uv venv .venv && uv pip install -e ".[dev]"
 
 test:  ## Runs the tests
 	@echo "[INFO] Running tests..."
