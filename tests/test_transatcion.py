@@ -1,6 +1,8 @@
 import unittest
-from desafio_autorizador.main import Transaction
 from datetime import datetime
+
+from desafio_autorizador.main import Transaction
+
 
 class TestTransaction(unittest.TestCase):
     def test_create_transaction(self):
@@ -9,6 +11,7 @@ class TestTransaction(unittest.TestCase):
         self.assertEqual(transaction.merchant, "Loja Z")
         self.assertEqual(transaction.amount, 150)
         self.assertEqual(transaction.time, time_now)
+
 
 if __name__ == "__main__":
     unittest.main()

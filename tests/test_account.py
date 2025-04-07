@@ -1,7 +1,8 @@
 import unittest
 from datetime import datetime
-from desafio_autorizador.main import Account
-from desafio_autorizador.main import Transaction
+
+from desafio_autorizador.main import Account, Transaction
+
 
 class TestAccount(unittest.TestCase):
     def setUp(self):
@@ -33,6 +34,7 @@ class TestAccount(unittest.TestCase):
         self.assertFalse(success)
         self.assertEqual(self.account.available_limit, 100)
         self.assertEqual(len(self.account.history), 0)
+
 
 if __name__ == "__main__":
     unittest.main()

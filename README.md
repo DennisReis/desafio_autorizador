@@ -6,7 +6,7 @@ Projeto de CLI em Python para simular um sistema de autorização de transaçõe
 
 ## 📁 Estrutura do Projeto
 
-```
+```bash
 desafio_autorizador/
 │
 ├── desafio_autorizador/        # Módulo principal
@@ -37,6 +37,7 @@ make install
 ```
 
 Este comando irá:
+
 - Criar um ambiente virtual `.venv`
 - Instalar dependências e o pacote em modo editável (`pip install -e .`)
 

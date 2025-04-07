@@ -1,5 +1,9 @@
 .PHONY: install test run clean
 
+precommit:
+	pre-commit install
+	pre-commit run --all-files
+
 install:
 	@echo "Instalando dependências..."
 	@cd desafio_autorizador \
@@ -13,6 +17,14 @@ test:
 run: install
 	@echo "Executando Desafio Autorizador..."
 	@desafio-autorizador
+
+lint:
+	ruff check desafio_autorizador tests
+
+format:
+	black desafio_autorizador tests
+	isort desafio_autorizador tests
+
 
 clean:
 	@echo "Limpando arquivos desnecessários..."

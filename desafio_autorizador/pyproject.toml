@@ -9,6 +9,35 @@ dependencies = []
 [project.scripts]
 desafio-autorizador = "main:main"
 
+[project.optional-dependencies]
+dev = ["ruff", "black", "isort"]
+
 [build-system]
 requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+exclude = '''
+/(
+    \.venv
+  | dist
+  | build
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+known_first_party = ["desafio_autorizador"]
+skip = [".venv", "dist", "build"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+exclude = [".venv", "dist", "build"]
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "I"]
+ignore = ["E501"]  # Ignora linhas longas, pois o Black já cuida disso
