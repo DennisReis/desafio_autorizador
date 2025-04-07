@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from .transaction import Transaction
 
@@ -48,6 +48,50 @@ class Account:
     def deactivate(self) -> None:
         """Deactivates the account, preventing new transactions."""
         self.active = False
+
+    def get_highest_transaction(self) -> Optional[Transaction]:
+        """
+        Returns the transaction with the highest amount in the account's history.
+
+        Returns:
+            Transaction | None: The transaction with the highest amount, or None if there are no transactions.
+        """
+        if not self.history:
+            return None
+        return max(self.history, key=lambda t: t.amount)
+
+    def get_lowest_transaction(self) -> Optional[Transaction]:
+        """
+        Returns the transaction with the lowest amount in the account's history.
+
+        Returns:
+            Transaction | None: The transaction with the lowest amount, or None if there are no transactions.
+        """
+        if not self.history:
+            return None
+        return min(self.history, key=lambda t: t.amount)
+
+    def get_latest_transaction(self) -> Optional[Transaction]:
+        """
+        Returns the most recent transaction based on the transaction timestamp.
+
+        Returns:
+            Optional[Transaction]: The most recent transaction, or None if no transactions exist.
+        """
+        if not self.history:
+            return None
+        return max(self.history, key=lambda t: t.time)
+
+    def get_oldest_transaction(self) -> Optional[Transaction]:
+        """
+        Returns the oldest transaction based on the transaction timestamp.
+
+        Returns:
+            Optional[Transaction]: The oldest transaction, or None if no transactions exist.
+        """
+        if not self.history:
+            return None
+        return min(self.history, key=lambda t: t.time)
 
     def __repr__(self):
         """Returns a string representation of the account.

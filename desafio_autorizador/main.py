@@ -12,7 +12,7 @@ def main():
     account = Account(active=True, available_limit=1000)
 
     # Creating a transaction of 100 for merchant 'Loja A' at the current date and time
-    transaction = Transaction(merchant="Loja A", amount=100, time=datetime.now())
+    transaction = Transaction(merchant="Loja A", amount=150, time=datetime.now())
 
     # Processing the transaction
     if account.process_transaction(transaction):
@@ -74,6 +74,30 @@ def main():
 
     # Displaying the current state of the account
     print(account)
+
+    highest = account.get_highest_transaction()
+    if highest:
+        print(f"Maior transação: {highest}")
+    else:
+        print("Nenhuma transação registrada.")
+
+    lowest = account.get_lowest_transaction()
+    if lowest:
+        print(f"Menor transação: {lowest}")
+    else:
+        print("Nenhuma transação registrada.")
+
+    latest = account.get_latest_transaction()
+    if latest:
+        print(f"Transação mais recente: {latest}")
+    else:
+        print("Nenhuma transação registrada.")
+
+    oldest = account.get_oldest_transaction()
+    if oldest:
+        print(f"Transação mais antiga: {oldest}")
+    else:
+        print("Nenhuma transação registrada.")
 
 
 if __name__ == "__main__":
