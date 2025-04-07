@@ -46,23 +46,6 @@ This command will:
 
 ---
 
-## 🧰 Available Commands
-
-| Command           | Description                                              |
-|-------------------|----------------------------------------------------------|
-| `make version`    | Show project version, directory and name                |
-| `make help`       | Show this help                                           |
-| `make precommit`  | Installs and runs pre-commit hooks                      |
-| `make install`    | Installs project dependencies                           |
-| `make test`       | Runs the tests                                           |
-| `make build`      | Builds the project into distributable formats           |
-| `make run`        | Runs the project from the built package (requires build) |
-| `make lint`       | Lints the code                                           |
-| `make format`     | Formats the code                                         |
-| `make clean`      | Cleans up unnecessary files                             |
-
----
-
 ## 🔧 Using the Authorizer
 
 After installation, run:
@@ -116,6 +99,23 @@ make run
 ```
 
 Note: `make run` automatically triggers `make build` if needed.
+
+---
+
+## 🧰 Available targets in the Makefile
+
+| Command           | Description                                              |
+|-------------------|----------------------------------------------------------|
+| `make version`    | Show project version, directory and name                |
+| `make help`       | Show this help                                           |
+| `make precommit`  | Installs and runs pre-commit hooks                      |
+| `make install`    | Installs project dependencies                           |
+| `make test`       | Runs the tests                                           |
+| `make build`      | Builds the project into distributable formats           |
+| `make run`        | Runs the project from the built package (requires build) |
+| `make lint`       | Lints the code                                           |
+| `make format`     | Formats the code                                         |
+| `make clean`      | Cleans up unnecessary files                             |
 
 ---
 
