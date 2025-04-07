@@ -6,7 +6,6 @@ precommit:
 
 install:
 	@echo "Instalando dependências..."
-	@cd desafio_autorizador \
 	uv venv .venv && uv pip install -e .
 	@cd ..
 

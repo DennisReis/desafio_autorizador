@@ -1,13 +1,13 @@
 [project]
 name = "desafio-autorizador"
 version = "0.1.0"
-description = "Add your description here"
+description = "Nubank - Desafio Autorizador"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = []
 
 [project.scripts]
-desafio-autorizador = "main:main"
+desafio-autorizador = "desafio_autorizador.main:main"
 
 [project.optional-dependencies]
 dev = ["ruff", "black", "isort"]
