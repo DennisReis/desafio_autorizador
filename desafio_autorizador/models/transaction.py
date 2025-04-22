@@ -32,3 +32,12 @@ class Transaction:
             str: Textual representation of the transaction.
         """
         return f"Transaction(merchant='{self.merchant}', amount={self.amount}, time={self.time})"
+
+    def __str__(self) -> str:
+        """
+        Returns a string representation of the transaction.
+
+        Returns:
+            str: Textual representation of the transaction.
+        """
+        return f"Transaction(merchant='{self.merchant}', amount={self.amount}, time={self.time.isoformat()})"

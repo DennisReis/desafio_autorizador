@@ -100,3 +100,14 @@ class Account:
             str: Textual representation of the account.
         """
         return f"Account(active={self.active}, available_limit={self.available_limit}, history={self.history})"
+
+    def __str__(self) -> str:
+        """Returns a string representation of the account.
+
+        Returns:
+            str: Textual representation of the account.
+        """
+        return (
+            f"Account(active={self.active}, available_limit={self.available_limit}, "
+            f"transactions={len(self.history)} total)"
+        )
