@@ -1,8 +1,14 @@
+from dataclasses import dataclass
 from typing import List, Optional
 
 from .transaction import Transaction
 from .deny_merchants import DenyMerchants
 
+
+@dataclass
+class TransactionResult:
+    approved: bool
+    reason: Optional[str] = None
 
 class Account:
     """
@@ -36,18 +42,16 @@ class Account:
         Returns:
             bool: True if the transaction is approved, False otherwise.
         """
-        if self.active and transaction.amount <= self.available_limit and not deny_merchants.is_merchant_denied(transaction.merchant):
-            self.available_limit -= transaction.amount
-            self.history.append(transaction)
-            print(f"Transaction approved: Merchant: {transaction.merchant}, Amount: {transaction.amount}, Remaining limit: {self.available_limit}")
-            return True
-        elif transaction.amount > self.available_limit:
-            print(f"Transaction denied: Insufficient limit. Available limit: {self.available_limit}, Transaction amount: {transaction.amount} Merchant: {transaction.merchant}")
-        elif not self.active:
-            print(f"Transaction denied: Account is inactive. Merchant: {transaction.merchant}")
-        else:
-            print(f"Transaction denied: Merchant is denied. Merchant: {transaction.merchant}")
-        return False
+        if not self.active:
+            return TransactionResult(False, "account-inactive")
+        if transaction.amount > self.available_limit:
+            return TransactionResult(False, "insufficient-limit")
+        if deny_merchants.is_merchant_denied(transaction.merchant):
+            return TransactionResult(False, "merchant-denied")
+
+        self.available_limit -= transaction.amount
+        self.history.append(transaction)
+        return TransactionResult(True)
 
     def activate(self) -> None:
         """Activates the account, enabling new transactions."""

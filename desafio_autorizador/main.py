@@ -16,21 +16,21 @@ def main():
     account = Account(active=True, available_limit=1000)
 
     transaction = Transaction(merchant="Loja A", amount=150, time=datetime.now())
-    account.process_transaction(transaction, deny_merchants)
+    format_transaction_result(account.process_transaction(transaction, deny_merchants))
 
     transaction = Transaction(merchant="Loja B", amount=200, time=datetime.now())
-    account.process_transaction(transaction, deny_merchants)
+    format_transaction_result(account.process_transaction(transaction, deny_merchants))
 
     transaction = Transaction(merchant="Loja C", amount=800, time=datetime.now())
-    account.process_transaction(transaction, deny_merchants)
+    format_transaction_result(account.process_transaction(transaction, deny_merchants))
 
     account.deactivate()
     transaction = Transaction(merchant="Loja D", amount=100, time=datetime.now())
-    account.process_transaction(transaction, deny_merchants)
+    format_transaction_result(account.process_transaction(transaction, deny_merchants))
 
     account.activate()
     transaction = Transaction(merchant="Loja D", amount=100, time=datetime.now())
-    account.process_transaction(transaction, deny_merchants)
+    format_transaction_result(account.process_transaction(transaction, deny_merchants))
 
     # Final account status
     print("\nResumo:")
@@ -60,6 +60,19 @@ def main():
     else:
         print("Nenhuma transação registrada.")
 
+def format_transaction_result(result):
+    """
+    Formats the transaction result for display.
+
+    Args:
+        result (TransactionResult): The result of the transaction processing.
+
+    Returns: None
+    """
+    if result.approved:
+        print(f"Transação aprovada")
+    else:
+        print(f"Transação negada: {result.reason}")
 
 if __name__ == "__main__":
     main()
