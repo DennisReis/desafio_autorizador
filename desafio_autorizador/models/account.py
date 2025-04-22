@@ -1,6 +1,7 @@
 from typing import List, Optional
 
 from .transaction import Transaction
+from .deny_merchants import DenyMerchants
 
 
 class Account:
@@ -25,7 +26,7 @@ class Account:
         self.available_limit = available_limit
         self.history: List[Transaction] = []
 
-    def process_transaction(self, transaction: Transaction) -> bool:
+    def process_transaction(self, transaction: Transaction, deny_merchants: DenyMerchants) -> bool:
         """
         Processes a transaction by debiting the amount from the available limit and adding it to the history.
 
@@ -35,10 +36,17 @@ class Account:
         Returns:
             bool: True if the transaction is approved, False otherwise.
         """
-        if self.active and transaction.amount <= self.available_limit:
+        if self.active and transaction.amount <= self.available_limit and not deny_merchants.is_merchant_denied(transaction.merchant):
             self.available_limit -= transaction.amount
             self.history.append(transaction)
+            print(f"Transaction approved: Merchant: {transaction.merchant}, Amount: {transaction.amount}, Remaining limit: {self.available_limit}")
             return True
+        elif transaction.amount > self.available_limit:
+            print(f"Transaction denied: Insufficient limit. Available limit: {self.available_limit}, Transaction amount: {transaction.amount} Merchant: {transaction.merchant}")
+        elif not self.active:
+            print(f"Transaction denied: Account is inactive. Merchant: {transaction.merchant}")
+        else:
+            print(f"Transaction denied: Merchant is denied. Merchant: {transaction.merchant}")
         return False
 
     def activate(self) -> None:
