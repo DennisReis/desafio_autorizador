@@ -10,7 +10,7 @@ dependencies = []
 desafio-autorizador = "desafio_autorizador.main:main"
 
 [project.optional-dependencies]
-dev = ["ruff", "black", "isort"]
+dev = ["ruff", "black", "isort", "commitizen", "pre-commit"]
 
 [build-system]
 requires = ["setuptools>=61"]
@@ -41,3 +41,13 @@ exclude = [".venv", "dist", "build"]
 [tool.ruff.lint]
 select = ["E", "F", "B", "I"]
 ignore = ["E501"]  # Ignora linhas longas, pois o Black já cuida disso
+
+[tool.commitizen]
+name = "cz_conventional"
+version = "0.1.0"
+tag_format = "v$version"
+version_files = [
+    "pyproject.toml:version",
+]
+update_changelog_on_bump = true
+changelog_incremental = true

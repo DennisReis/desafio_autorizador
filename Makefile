@@ -3,7 +3,7 @@ VERSION ?= $$(cat pyproject.toml | grep version | cut -d'=' -f2 | tr -d ' "' | h
 PROJECT_NAME = desafio_autorizador
 PROJECT_DIR = $(shell pwd)
 
-.PHONY: precommit install test build run lint format clean
+.PHONY: precommit install test build run lint format clean commit
 .ONESHELL:
 .EXPORT_ALL_VARIABLES:
 
@@ -50,3 +50,7 @@ clean:  ## Cleans up unnecessary files
 	@echo "Cleaning up unnecessary files..."
 	@find . -type d -name "__pycache__" -exec rm -rf {} +
 	@find . -name "*.pyc" -delete
+
+commit:  ## Create a commit using commitizen (follows Conventional Commits)
+	@echo "[INFO] Creating a commit using conventional commit format..."
+	@cz commit

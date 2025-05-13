@@ -119,6 +119,51 @@ Note: `make run` automatically triggers `make build` if needed.
 
 ---
 
+## 📝 Conventional Commits
+
+This project follows the [Conventional Commits](https://www.conventionalcommits.org/) specification. Each commit message should be structured as follows:
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+### Types:
+
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation changes
+- `style`: Code style changes (formatting, etc.)
+- `refactor`: Code changes that neither fix bugs nor add features
+- `perf`: Performance improvements
+- `test`: Adding or fixing tests
+- `build`: Changes to build process or tools
+- `ci`: Changes to CI configuration files and scripts
+- `chore`: Other changes that don't modify src or test files
+
+### Examples:
+
+```bash
+feat: add account blocking functionality
+fix(transaction): prevent duplicate transaction processing
+docs: update README with installation instructions
+```
+
+### Using Commitizen
+
+To create a commit that follows this convention, run:
+
+```bash
+make commit
+```
+
+This will guide you through the process of creating a well-formatted commit message.
+
+---
+
 ## ✅ Status
 
 - [x] Modular structure with models
@@ -126,6 +171,7 @@ Note: `make run` automatically triggers `make build` if needed.
 - [x] Unit tests with `unittest`
 - [x] Build and distribution with `setuptools`
 - [x] Management via `Makefile` and `uv`
+- [x] Conventional Commits with Commitizen
 
 ---
 
