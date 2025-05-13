@@ -1,6 +1,6 @@
 [project]
 name = "desafio-autorizador"
-version = "0.1.0"
+version = "1.0.0"
 description = "Nubank - Desafio Autorizador"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -44,7 +44,7 @@ ignore = ["E501"]  # Ignora linhas longas, pois o Black já cuida disso
 
 [tool.commitizen]
 name = "cz_conventional"
-version = "0.1.0"
+version = "1.0.0"
 tag_format = "v$version"
 version_files = [
     "pyproject.toml:version",
